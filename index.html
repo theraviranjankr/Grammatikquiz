@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Grammar Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        header img, footer img {
+            width: 100px;  /* Increased logo size */
+            height: 100px; /* Increased logo size */
+            vertical-align: middle;
+        }
+
+        header h1, footer p {
+            display: inline-block;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        /* Center the content on larger screens */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        h2, button {
+            font-size: 24px;  /* Increased font size */
+            font-weight: bold; /* Make text bold */
+            text-align: center; /* Centered text */
+        }
+
+        input[type="text"], button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #ff9800;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e68900;
+        }
+
+        .question-box, .explanation-box {
+            padding: 15px;
+            border: 2px solid #c0c0c0;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .saffron {
+            background-color: #ff9933;
+        }
+
+        .white {
+            background-color: #ffffff;
+        }
+
+        .green {
+            background-color: #138808;
+        }
+
+        #quiz-container, #results-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        .results-table th, .results-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .star-rating {
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        /* Responsive centering for input and buttons */
+        @media screen and (min-width: 768px) {
+            input[type="text"], button {
+                width: 300px;
+            }
+        }
+
+        .telegram-button {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .telegram-button:hover {
+            background-color: #007bb5;
+        }
+
+        /* Footer Layout */
+        footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0; /* Added padding to the footer */
+}
+
+footer p {
+    margin: 20px 0; /* Increased margin for better spacing */
+}
+
+
+        /* Centering for smaller devices */
+        @media (max-width: 600px) {
+            h2, button {
+                font-size: 20px; /* Smaller font for mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="photo_2022-05-07_08-26-16.jpg.jpg" alt="Logo">
+    <h1>GERMAN NOTES FOR A1 TO B2</h1>
+    <p>BY RAVIRANJAN KUMAR</p>
+</header>
+
+<main id="main-content">
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h2>Willkommen! Bitte geben Sie Ihren Namen ein:</h2>
+        <input type="text" id="studentName" placeholder="Ihr Name">
+        <button onclick="startQuiz()">Test starten</button>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" style="display: none;">
+        <h2 id="timer">Zeit: <span id="time">15:00</span></h2>
+        <div id="questions"></div>
+        <button onclick="submitQuiz()">Test einreichen</button>
+    </div>
+
+    <!-- Results Container -->
+<div id="results-container" style="display: none;">
+    <h2>Ergebnisse</h2>
+    <div id="results"></div>
+    <div id="explanations"></div>
+    <button onclick="restartQuiz()">Neuen Test starten</button>
+    <button onclick="saveQuiz()">Quiz speichern</button>
+    <div id="past-quizzes"></div> <!-- Section for displaying past quizzes -->
+</div>
+
+</main>
+
+<footer>
+    <img src="photo_2022-05-07_08-26-16.jpg.jpg" alt="Logo">
+    <p>
+        <a href="https://t.me/theraviranjankr1" target="_blank" class="telegram-button">Join my Telegram Channel</a>
+    </p>
+    <p>© 2024 GERMAN NOTES FOR A1 TO B2</p>
+</footer>
+
+<script>
+    let totalQuestions = 30; // Set to 30 questions
+    let correctAnswers = 0;
+
+    let questions = [
+    {
+        question: "Welche Präposition passt hier? 'Ich warte ___ den Bus.'",
+        options: ["auf", "an", "über", "für"],
+        answer: "auf",
+        explanation: "Die Präposition 'auf' wird bei Warten auf etwas verwendet."
+    },
+    {
+        question: "Welches ist das korrekte Adjektiv? 'Das ist ein ___ Hund.'",
+        options: ["großes", "große", "großer", "groß"],
+        answer: "großer",
+        explanation: "'Hund' ist maskulin, daher braucht es das Adjektiv 'großer'."
+    },
+    {
+        question: "Welche Form von 'müssen' passt für 'sie' (Plural)?",
+        options: ["muss", "müssen", "müsst", "mussest"],
+        answer: "müssen",
+        explanation: "'Sie' im Plural verwendet 'müssen'."
+    },
+    {
+        question: "Füllen Sie die Lücke: 'Wir freuen uns ___ deinen Besuch.'",
+        options: ["an", "auf", "über", "um"],
+        answer: "auf",
+        explanation: "Man freut sich 'auf' etwas in der Zukunft."
+    },
+    {
+        question: "Wählen Sie die korrekte Konjunktion: '___ es regnet, gehen wir spazieren.'",
+        options: ["Wenn", "Aber", "Sobald", "Weil"],
+        answer: "Wenn",
+        explanation: "'Wenn' bedeutet 'falls' und beschreibt eine Bedingung."
+    },
+    {
+        question: "Welche ist die korrekte Form des Verbs 'gehen' für 'er'? 'Er ___ in die Schule.'",
+        options: ["gehe", "geht", "gehst", "gehen"],
+        answer: "geht",
+        explanation: "Die richtige Form für 'er' ist 'geht'."
+    },
+    {
+        question: "Welches Pronomen passt? 'Ich habe ___ Buch vergessen.'",
+        options: ["meinen", "mein", "meine", "meinem"],
+        answer: "mein",
+        explanation: "'Buch' ist neutral, daher 'mein'."
+    },
+    {
+        question: "Wählen Sie die korrekte Form: 'Das Auto ___ schnell.'",
+        options: ["fahren", "fährt", "fahre", "fährst"],
+        answer: "fährt",
+        explanation: "'Auto' verwendet die dritte Person Singular, also 'fährt'."
+    },
+    {
+        question: "Was ist die korrekte Form von 'werden' für 'du'? '___ du morgen kommen?'",
+        options: ["Wird", "Werde", "Wirst", "Werden"],
+        answer: "Wirst",
+        explanation: "Für 'du' verwendet man 'wirst'."
+    },
+    {
+        question: "Welches ist die korrekte Vergangenheitsform? 'Ich ___ gestern im Kino.'",
+        options: ["war", "bin gewesen", "warst", "ist gewesen"],
+        answer: "war",
+        explanation: "Die einfache Vergangenheit von 'sein' für 'ich' ist 'war'."
+    },
+    {
+        question: "Setzen Sie das Verb in der richtigen Form ein: 'Sie ___ die Tür geschlossen.'",
+        options: ["hast", "hat", "hatten", "habt"],
+        answer: "hat",
+        explanation: "Die dritte Person Singular verwendet 'hat'."
+    },
+    {
+        question: "Was ist der richtige Artikel? '___ Auto ist blau.'",
+        options: ["Der", "Die", "Das", "Den"],
+        answer: "Das",
+        explanation: "Das Wort 'Auto' ist neutral, also 'das'."
+    },
+    {
+        question: "Welche Form von 'lesen' passt? 'Wir ___ das Buch zusammen.'",
+        options: ["lese", "liest", "lesen", "lest"],
+        answer: "lesen",
+        explanation: "Die richtige Form für 'wir' ist 'lesen'."
+    },
+    {
+        question: "Füllen Sie das richtige Pronomen ein: 'Kannst du ___ helfen?'",
+        options: ["mir", "mich", "mein", "meiner"],
+        answer: "mir",
+        explanation: "Nach dem Verb 'helfen' folgt der Dativ, also 'mir'."
+    },
+    {
+        question: "Welche ist die korrekte Form des Verbs? 'Er ___ gerne Pizza.'",
+        options: ["isst", "essen", "esst", "esse"],
+        answer: "isst",
+        explanation: "'Er' verwendet 'isst' als dritte Person Singular von 'essen'."
+    },
+    {
+        question: "Welcher Artikel ist richtig? '___ Tisch ist braun.'",
+        options: ["Die", "Das", "Den", "Der"],
+        answer: "Der",
+        explanation: "'Tisch' ist maskulin, daher 'der'."
+    },
+    {
+        question: "Setzen Sie das passende Adverb ein: 'Ich kann ___ gut Deutsch sprechen.'",
+        options: ["sehr", "viel", "so", "vieler"],
+        answer: "sehr",
+        explanation: "'Sehr' wird als Verstärkung für Verben wie 'sprechen' verwendet."
+    },
+    {
+        question: "Welches ist das richtige Pronomen? '___ Fahrrad gehört dir?'",
+        options: ["Welcher", "Welches", "Welche", "Welchen"],
+        answer: "Welches",
+        explanation: "'Fahrrad' ist neutral, daher 'welches'."
+    },
+    {
+        question: "Finden Sie die richtige Vergangenheitsform: 'Er ___ gestern Fußball.'",
+        options: ["spielte", "spielst", "hat gespielt", "spielt"],
+        answer: "hat gespielt",
+        explanation: "Das Perfekt von 'spielen' ist 'hat gespielt'."
+    },
+    {
+        question: "Was ist die korrekte Form von „können“ für „er“?",
+        options: ["kann", "könnt", "kannst", "können"],
+        answer: "kann",
+        explanation: "Die richtige Antwort ist \"kann\", weil es die dritte Person Singular im Präsens ist."
+    },
+    {
+        question: "Welcher Artikel passt zu „Apfel“?",
+        options: ["der", "die", "das", "den"],
+        answer: "der",
+        explanation: "„Apfel“ ist ein maskulines Substantiv, daher verwendet man „der“."
+    },
+    {
+        question: "Was ist die korrekte Form von „werden“ für „sie (Plural)“?",
+        options: ["werde", "werdet", "werden", "wird"],
+        answer: "werden",
+        explanation: "Für „sie (Plural)“ benutzt man die dritte Person Plural, also „werden“."
+    },
+    {
+        question: "Wie lautet der Dativ-Artikel für „Mann“?",
+        options: ["dem", "den", "der", "die"],
+        answer: "dem",
+        explanation: "„Mann“ ist maskulin, und der Dativ-Artikel für maskuline Substantive ist „dem“."
+    },
+    {
+        question: "Welche Präposition passt? „Ich fahre ___ die Stadt.“",
+        options: ["auf", "durch", "gegen", "neben"],
+        answer: "durch",
+        explanation: "Man verwendet „durch“, um auszudrücken, dass man sich in der Stadt bewegt."
+    },
+    {
+        question: "Welche Form ist richtig? „Wir ___ nach München.“",
+        options: ["fährt", "fahren", "fahre", "fahrt"],
+        answer: "fahren",
+        explanation: "\"Wir\" verlangt die erste Person Plural Form, also \"fahren\"."
+    },
+    {
+        question: "Was ist die korrekte Negation? „Ich habe Geld.“",
+        options: ["nicht", "keinen", "keine", "kein"],
+        answer: "kein",
+        explanation: "Man verwendet „kein“, um ein Substantiv im Nominativ zu negieren."
+    },
+    {
+        question: "Was ist das Perfekt von „essen“ für „du“?",
+        options: ["hast gegessen", "habe gegessen", "isst gegessen", "hat gegessen"],
+        answer: "hast gegessen",
+        explanation: "Die richtige Form ist „hast gegessen“, weil es sich um das Perfekt für „du“ handelt."
+    },
+    {
+        question: "Welches Pronomen passt? „Ich helfe ___ (dir) mit der Aufgabe.“",
+        options: ["mir", "dich", "dir", "mich"],
+        answer: "dir",
+        explanation: "„Helfen“ verlangt den Dativ, daher „dir“."
+    },
+    {
+        question: "Was ist die korrekte Pluralform von „Haus“?",
+        options: ["Häuser", "Hauses", "Hausen", "Hause"],
+        answer: "Häuser",
+        explanation: "Die richtige Pluralform von „Haus“ ist „Häuser“."
+    },
+    {
+        question: "Wähle die richtige Antwort: „Das Auto gehört ___ Frau.“",
+        options: ["der", "dem", "die", "den"],
+        answer: "der",
+        explanation: "„Gehören“ verlangt den Dativ, daher „der Frau“."
+    }
+];
+
+
+    let timeRemaining = 15 * 60; // 15 minutes in seconds
+
+    function startQuiz() {
+        const studentName = document.getElementById('studentName').value;
+        if (!studentName) {
+            alert('Bitte geben Sie Ihren Namen ein.');
+            return;
+        }
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        loadQuiz();
+        startTimer();
+    }
+
+    function loadQuiz() {
+        let quizHtml = '';
+        questions.forEach((q, index) => {
+            const colorClass = index % 3 === 0 ? 'saffron' : index % 3 === 1 ? 'white' : 'green';
+
+            quizHtml += `
+                <div class="question-box ${colorClass}">
+                    <h3>Frage ${index + 1}: ${q.question}</h3>
+                    ${q.options.map(option => `
+                        <label>
+                            <input type="radio" name="question${index}" value="${option}">
+                            ${option}
+                        </label><br>
+                    `).join('')}
+                </div>`;
+        });
+
+        document.getElementById('questions').innerHTML = quizHtml;
+    }
+
+    function startTimer() {
+        const timerElement = document.getElementById('time');
+
+        const countdown = setInterval(() => {
+            if (timeRemaining <= 0) {
+                clearInterval(countdown);
+                submitQuiz(); // Auto-submit when time runs out
+            } else {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerElement.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+
+    function submitQuiz() {
+        correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let unansweredQuestions = 0;
+
+        questions.forEach((q, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            if (selectedOption) {
+                if (selectedOption.value === q.answer) {
+                    correctAnswers++;
+                } else {
+                    incorrectAnswers++;
+                }
+            } else {
+                unansweredQuestions++;
+            }
+        });
+
+        // Call the showResults function after calculating answers
+        showResults(incorrectAnswers, unansweredQuestions);
+    }
+
+    // Show results function should be defined outside of submitQuiz
+    function showResults(incorrectAnswers, unansweredQuestions) {
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('results-container').style.display = 'block';
+
+        const totalAttempted = totalQuestions - unansweredQuestions;
+        const percentage = (correctAnswers / totalQuestions) * 100;
+        const stars = calculateStars(correctAnswers);
+
+        const resultsHtml = `
+            <table class="results-table">
+                <tr>
+                    <th>Teilnehmer:</th>
+                    <td>${document.getElementById('studentName').value}</td>
+                </tr>
+                <tr>
+                    <th>Gesamtversuche:</th>
+                    <td>${totalAttempted}</td>
+                </tr>
+                <tr>
+                    <th>Korrekte Fragen:</th>
+                    <td>${correctAnswers}</td>
+                </tr>
+                <tr>
+                    <th>Falsche Fragen:</th>
+                    <td>${incorrectAnswers}</td>
+                </tr>
+                <tr>
+                    <th>Übersehene Fragen:</th>
+                    <td>${unansweredQuestions}</td>
+                </tr>
+                <tr>
+                    <th>Prozentsatz:</th>
+                    <td>${percentage.toFixed(2)}%</td>
+                </tr>
+                <tr>
+                    <th>Bewertung:</th>
+                    <td class="star-rating">${stars}</td>
+                </tr>
+            </table>
+        `;
+
+        const explanationsHtml = questions.map((q, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            const userResponse = selectedOption ? selectedOption.value : 'Nicht beantwortet';
+            const correctIcon = userResponse === q.answer ? '✅' : '❌';
+
+            return `
+                <div class="explanation-box ${index % 3 === 0 ? 'saffron' : index % 3 === 1 ? 'white' : 'green'}">
+                    <h4>Erklärung für Frage ${index + 1}:</h4>
+                    <p><strong>Ihre Antwort:</strong> ${correctIcon} ${userResponse}</p>
+                    <p><strong>Korrekte Antwort:</strong> ${q.answer}</p>
+                    <p>${q.explanation}</p>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('results').innerHTML = resultsHtml;
+        document.getElementById('explanations').innerHTML = explanationsHtml;
+    }
+
+    function calculateStars(correctAnswers) {
+        const percentage = (correctAnswers / totalQuestions) * 100;
+        if (percentage === 100) {
+            return '⭐⭐⭐⭐⭐';
+        } else if (percentage >= 80) {
+            return '⭐⭐⭐⭐';
+        } else if (percentage >= 60) {
+            return '⭐⭐⭐';
+        } else if (percentage >= 40) {
+            return '⭐⭐';
+        } else {
+            return '⭐';
+        }
+    }
+
+    function restartQuiz() {
+        correctAnswers = 0;
+        timeRemaining = 15 * 60; // Reset the timer
+        document.getElementById('results-container').style.display = 'none';
+        document.getElementById('start-screen').style.display = 'block';
+        document.getElementById('studentName').value = '';
+    }
+    // Function to save the quiz
+function saveQuiz() {
+    const quizData = {
+        date: new Date().toLocaleDateString(),
+        studentName: document.getElementById('studentName').value,
+        correctAnswers: correctAnswers,
+        totalQuestions: totalQuestions,
+        questions: questions
+    };
+
+    let pastQuizzes = JSON.parse(localStorage.getItem('pastQuizzes')) || [];
+    pastQuizzes.push(quizData);
+    localStorage.setItem('pastQuizzes', JSON.stringify(pastQuizzes));
+
+    alert('Quiz gespeichert!');
+}
+
+// Function to load past quizzes and display them
+function loadPastQuizzes() {
+    const pastQuizzes = JSON.parse(localStorage.getItem('pastQuizzes')) || [];
+    const quizzesContainer = document.getElementById('past-quizzes');
+    
+    if (pastQuizzes.length === 0) {
+        quizzesContainer.innerHTML = '<p>Keine gespeicherten Quizzes gefunden.</p>';
+        return;
+    }
+
+    const quizzesHtml = pastQuizzes.map((quiz, index) => `
+        <div class="quiz-summary">
+            <h4>Quiz vom ${quiz.date}</h4>
+            <p>Teilnehmer: ${quiz.studentName}</p>
+            <p>Korrekte Antworten: ${quiz.correctAnswers} von ${quiz.totalQuestions}</p>
+        </div>
+    `).join('');
+
+    quizzesContainer.innerHTML = quizzesHtml;
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', loadPastQuizzes);
+
+</script>
+</body>
+</html>
+
