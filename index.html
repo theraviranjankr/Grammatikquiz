@@ -214,187 +214,278 @@ footer p {
     let correctAnswers = 0;
 
     let questions = [
-    {
-        question: "Welche Präposition passt hier? 'Ich warte ___ den Bus.'",
-        options: ["auf", "an", "über", "für"],
-        answer: "auf",
-        explanation: "Die Präposition 'auf' wird bei Warten auf etwas verwendet."
-    },
-    {
-        question: "Welches ist das korrekte Adjektiv? 'Das ist ein ___ Hund.'",
-        options: ["großes", "große", "großer", "groß"],
-        answer: "großer",
-        explanation: "'Hund' ist maskulin, daher braucht es das Adjektiv 'großer'."
-    },
-    {
-        question: "Welche Form von 'müssen' passt für 'sie' (Plural)?",
-        options: ["muss", "müssen", "müsst", "mussest"],
-        answer: "müssen",
-        explanation: "'Sie' im Plural verwendet 'müssen'."
-    },
-    {
-        question: "Füllen Sie die Lücke: 'Wir freuen uns ___ deinen Besuch.'",
-        options: ["an", "auf", "über", "um"],
-        answer: "auf",
-        explanation: "Man freut sich 'auf' etwas in der Zukunft."
-    },
-    {
-        question: "Wählen Sie die korrekte Konjunktion: '___ es regnet, gehen wir spazieren.'",
-        options: ["Wenn", "Aber", "Sobald", "Weil"],
-        answer: "Wenn",
-        explanation: "'Wenn' bedeutet 'falls' und beschreibt eine Bedingung."
-    },
-    {
-        question: "Welche ist die korrekte Form des Verbs 'gehen' für 'er'? 'Er ___ in die Schule.'",
-        options: ["gehe", "geht", "gehst", "gehen"],
-        answer: "geht",
-        explanation: "Die richtige Form für 'er' ist 'geht'."
-    },
-    {
-        question: "Welches Pronomen passt? 'Ich habe ___ Buch vergessen.'",
-        options: ["meinen", "mein", "meine", "meinem"],
-        answer: "mein",
-        explanation: "'Buch' ist neutral, daher 'mein'."
-    },
-    {
-        question: "Wählen Sie die korrekte Form: 'Das Auto ___ schnell.'",
-        options: ["fahren", "fährt", "fahre", "fährst"],
-        answer: "fährt",
-        explanation: "'Auto' verwendet die dritte Person Singular, also 'fährt'."
-    },
-    {
-        question: "Was ist die korrekte Form von 'werden' für 'du'? '___ du morgen kommen?'",
-        options: ["Wird", "Werde", "Wirst", "Werden"],
-        answer: "Wirst",
-        explanation: "Für 'du' verwendet man 'wirst'."
-    },
-    {
-        question: "Welches ist die korrekte Vergangenheitsform? 'Ich ___ gestern im Kino.'",
-        options: ["war", "bin gewesen", "warst", "ist gewesen"],
-        answer: "war",
-        explanation: "Die einfache Vergangenheit von 'sein' für 'ich' ist 'war'."
-    },
-    {
-        question: "Setzen Sie das Verb in der richtigen Form ein: 'Sie ___ die Tür geschlossen.'",
-        options: ["hast", "hat", "hatten", "habt"],
-        answer: "hat",
-        explanation: "Die dritte Person Singular verwendet 'hat'."
-    },
-    {
-        question: "Was ist der richtige Artikel? '___ Auto ist blau.'",
-        options: ["Der", "Die", "Das", "Den"],
-        answer: "Das",
-        explanation: "Das Wort 'Auto' ist neutral, also 'das'."
-    },
-    {
-        question: "Welche Form von 'lesen' passt? 'Wir ___ das Buch zusammen.'",
-        options: ["lese", "liest", "lesen", "lest"],
-        answer: "lesen",
-        explanation: "Die richtige Form für 'wir' ist 'lesen'."
-    },
-    {
-        question: "Füllen Sie das richtige Pronomen ein: 'Kannst du ___ helfen?'",
-        options: ["mir", "mich", "mein", "meiner"],
-        answer: "mir",
-        explanation: "Nach dem Verb 'helfen' folgt der Dativ, also 'mir'."
-    },
-    {
-        question: "Welche ist die korrekte Form des Verbs? 'Er ___ gerne Pizza.'",
-        options: ["isst", "essen", "esst", "esse"],
-        answer: "isst",
-        explanation: "'Er' verwendet 'isst' als dritte Person Singular von 'essen'."
-    },
-    {
-        question: "Welcher Artikel ist richtig? '___ Tisch ist braun.'",
-        options: ["Die", "Das", "Den", "Der"],
-        answer: "Der",
-        explanation: "'Tisch' ist maskulin, daher 'der'."
-    },
-    {
-        question: "Setzen Sie das passende Adverb ein: 'Ich kann ___ gut Deutsch sprechen.'",
-        options: ["sehr", "viel", "so", "vieler"],
-        answer: "sehr",
-        explanation: "'Sehr' wird als Verstärkung für Verben wie 'sprechen' verwendet."
-    },
-    {
-        question: "Welches ist das richtige Pronomen? '___ Fahrrad gehört dir?'",
-        options: ["Welcher", "Welches", "Welche", "Welchen"],
-        answer: "Welches",
-        explanation: "'Fahrrad' ist neutral, daher 'welches'."
-    },
-    {
-        question: "Finden Sie die richtige Vergangenheitsform: 'Er ___ gestern Fußball.'",
-        options: ["spielte", "spielst", "hat gespielt", "spielt"],
-        answer: "hat gespielt",
-        explanation: "Das Perfekt von 'spielen' ist 'hat gespielt'."
-    },
-    {
-        question: "Was ist die korrekte Form von „können“ für „er“?",
-        options: ["kann", "könnt", "kannst", "können"],
-        answer: "kann",
-        explanation: "Die richtige Antwort ist \"kann\", weil es die dritte Person Singular im Präsens ist."
-    },
-    {
-        question: "Welcher Artikel passt zu „Apfel“?",
-        options: ["der", "die", "das", "den"],
-        answer: "der",
-        explanation: "„Apfel“ ist ein maskulines Substantiv, daher verwendet man „der“."
-    },
-    {
-        question: "Was ist die korrekte Form von „werden“ für „sie (Plural)“?",
-        options: ["werde", "werdet", "werden", "wird"],
-        answer: "werden",
-        explanation: "Für „sie (Plural)“ benutzt man die dritte Person Plural, also „werden“."
-    },
-    {
-        question: "Wie lautet der Dativ-Artikel für „Mann“?",
-        options: ["dem", "den", "der", "die"],
-        answer: "dem",
-        explanation: "„Mann“ ist maskulin, und der Dativ-Artikel für maskuline Substantive ist „dem“."
-    },
-    {
-        question: "Welche Präposition passt? „Ich fahre ___ die Stadt.“",
-        options: ["auf", "durch", "gegen", "neben"],
-        answer: "durch",
-        explanation: "Man verwendet „durch“, um auszudrücken, dass man sich in der Stadt bewegt."
-    },
-    {
-        question: "Welche Form ist richtig? „Wir ___ nach München.“",
-        options: ["fährt", "fahren", "fahre", "fahrt"],
-        answer: "fahren",
-        explanation: "\"Wir\" verlangt die erste Person Plural Form, also \"fahren\"."
-    },
-    {
-        question: "Was ist die korrekte Negation? „Ich habe Geld.“",
-        options: ["nicht", "keinen", "keine", "kein"],
-        answer: "kein",
-        explanation: "Man verwendet „kein“, um ein Substantiv im Nominativ zu negieren."
-    },
-    {
-        question: "Was ist das Perfekt von „essen“ für „du“?",
-        options: ["hast gegessen", "habe gegessen", "isst gegessen", "hat gegessen"],
-        answer: "hast gegessen",
-        explanation: "Die richtige Form ist „hast gegessen“, weil es sich um das Perfekt für „du“ handelt."
-    },
-    {
-        question: "Welches Pronomen passt? „Ich helfe ___ (dir) mit der Aufgabe.“",
-        options: ["mir", "dich", "dir", "mich"],
-        answer: "dir",
-        explanation: "„Helfen“ verlangt den Dativ, daher „dir“."
-    },
-    {
-        question: "Was ist die korrekte Pluralform von „Haus“?",
-        options: ["Häuser", "Hauses", "Hausen", "Hause"],
-        answer: "Häuser",
-        explanation: "Die richtige Pluralform von „Haus“ ist „Häuser“."
-    },
-    {
-        question: "Wähle die richtige Antwort: „Das Auto gehört ___ Frau.“",
-        options: ["der", "dem", "die", "den"],
-        answer: "der",
-        explanation: "„Gehören“ verlangt den Dativ, daher „der Frau“."
-    }
-];
+        {
+            question: "Wähle die richtige Konjunktion: Ich gehe ins Kino, ___ es regnet.",
+            options: ["wenn", "obwohl", "weil", "damit"],
+            answer: "obwohl",
+            explanation: "Obwohl is used to express a contrast, meaning 'although'."
+        },
+        {
+            question: "Welches ist der richtige Artikel? Ich brauche ___ Buch für den Unterricht.",
+            options: ["der", "das", "die", "den"],
+            answer: "das",
+            explanation: "The correct article for 'Buch' (neuter noun) is 'das'."
+        },
+        {
+            question: "Setze das richtige Verb ein: Wir ___ seit drei Stunden auf den Bus.",
+            options: ["warten", "wartet", "warteten", "gewartet"],
+            answer: "warten",
+            explanation: "'Wir' is first-person plural, so the verb 'warten' stays in the plural form."
+        },
+        {
+            question: "Was ist die korrekte Pluralform von „Auto“?",
+            options: ["Autos", "Autoen", "Auton", "Aute"],
+            answer: "Autos",
+            explanation: "The plural of 'Auto' is 'Autos'."
+        },
+        {
+            question: "Wähle das richtige Modalverb: Peter ___ sein Zimmer aufräumen, bevor er spielen darf.",
+            options: ["muss", "will", "soll", "darf"],
+            answer: "muss",
+            explanation: "'Muss' expresses obligation, meaning 'must'."
+        },
+        {
+            question: "Welcher Satz ist im Futur I korrekt?",
+            options: ["Ich werde nach Hause gehen.", "Ich gehte nach Hause.", "Ich warte nach Hause.", "Ich habe nach Hause gegangen."],
+            answer: "Ich werde nach Hause gehen.",
+            explanation: "Futur I is constructed with 'werden' and the infinitive verb."
+        },
+        {
+            question: "Welches Pronomen passt? Das ist das Haus, in ___ wir wohnen.",
+            options: ["dem", "der", "denen", "das"],
+            answer: "dem",
+            explanation: "'Dem' is the correct relative pronoun in dative case referring to 'Haus'."
+        },
+        {
+            question: "Welches Adjektiv ist richtig dekliniert? Ich habe einen ___ Apfel gekauft.",
+            options: ["roten", "roter", "rot", "rotes"],
+            answer: "roten",
+            explanation: "For masculine accusative nouns, the adjective takes the '-en' ending."
+        },
+        {
+            question: "Wähle die richtige Präposition: Ich warte ___ meinen Freund vor dem Kino.",
+            options: ["auf", "für", "an", "über"],
+            answer: "auf",
+            explanation: "'Warten auf' means 'to wait for'."
+        },
+        {
+            question: "Welches ist das korrekte Perfekt? Wir ___ den ganzen Tag gearbeitet.",
+            options: ["haben", "sind", "hatten", "waren"],
+            answer: "haben",
+            explanation: "In the perfect tense, 'haben' is used with most verbs."
+        },
+        {
+            question: "Welche Präposition erfordert den Akkusativ?",
+            options: ["durch", "mit", "bei", "seit"],
+            answer: "durch",
+            explanation: "'Durch' is a preposition that requires the accusative case."
+        },
+        {
+            question: "Welches ist der korrekte Genitivsatz? Das ist das Auto ___ Bruders.",
+            options: ["meines", "meines", "meinem", "meiner"],
+            answer: "meines",
+            explanation: "The genitive form is 'meines Bruders' for 'my brother's car'."
+        },
+        {
+            question: "Welcher Satz ist im Passiv? ",
+            options: ["Die Kinder essen das Eis.", "Das Eis wird von den Kindern gegessen.", "Die Kinder werden das Eis essen.", "Das Eis gegessen werden."],
+            answer: "Das Eis wird von den Kindern gegessen.",
+            explanation: "The passive voice describes what happens to the ice cream."
+        },
+        {
+            question: "Wähle die richtige Zeitform: Er sagte, dass er gestern ___ .",
+            options: ["gegangen ist", "geht", "gegangen war", "gegangen hätte"],
+            answer: "gegangen war",
+            explanation: "For reported speech, we use the plusquamperfekt."
+        },
+        {
+            question: "Welches Wort ist ein Synonym für „beginnen“?",
+            options: ["anfangen", "aufhören", "beenden", "verlassen"],
+            answer: "anfangen",
+            explanation: "'Anfangen' is a synonym for 'beginnen'."
+        },
+        {
+            question: "Welches Verb erfordert den Dativ? Das Buch ___ mir sehr gut.",
+            options: ["gefällt", "gehört", "liegt", "sieht"],
+            answer: "gefällt",
+            explanation: "'Gefallen' takes the dative case."
+        },
+        {
+            question: "Welcher Satz ist korrekt?",
+            options: ["Ich bin nach Deutschland gegangen.", "Ich war nach Deutschland gegangen.", "Ich habe nach Deutschland gehen.", "Ich werde nach Deutschland gehen sein."],
+            answer: "Ich bin nach Deutschland gegangen.",
+            explanation: "This is the correct sentence in the perfect tense."
+        },
+        {
+            question: "Wähle das richtige Relativpronomen: Der Mann, ___ Auto kaputt ist, wartet hier.",
+            options: ["dessen", "der", "dessen", "den"],
+            answer: "dessen",
+            explanation: "'Dessen' is used in the genitive to indicate possession."
+        },
+        {
+            question: "Welche Adjektivendung ist korrekt? Das ist ein ___ Auto.",
+            options: ["schönes", "schönen", "schöner", "schöne"],
+            answer: "schönes",
+            explanation: "For neuter nouns, the correct adjective ending is '-es'."
+        },
+        {
+            question: "Welches ist das richtige Verb im Plusquamperfekt? Bevor sie ankam, ___ ich das Essen schon gekocht.",
+            options: ["hatte", "habe", "war", "wäre"],
+            answer: "hatte",
+            explanation: "The plusquamperfekt is constructed with 'hatte' plus the past participle."
+        },
+        {
+            question: "Welche Präposition wird mit Genitiv verwendet?",
+            options: ["trotz", "bei", "mit", "in"],
+            answer: "trotz",
+            explanation: "'Trotz' is a preposition that requires the genitive case."
+        },
+        {
+            question: "Wähle das richtige Reflexivpronomen: Er hat ___ die Hände gewaschen.",
+            options: ["sich", "ihn", "ihn", "sein"],
+            answer: "sich",
+            explanation: "Reflexive verbs use the pronoun 'sich' in the third person."
+        },
+        {
+            question: "Welches Wort passt in die Lücke? Wir wohnen in einer ___ Stadt.",
+            options: ["kleinen", "kleiner", "kleine", "kleinem"],
+            answer: "kleinen",
+            explanation: "Adjectives before feminine singular nouns in the dative take the '-en' ending."
+        },
+        {
+            question: "Welche Wortstellung ist korrekt? Heute ___ wir ins Kino gehen.",
+            options: ["werden", "werden wir", "gehen wir", "wir werden"],
+            answer: "gehen wir",
+            explanation: "In German, the verb comes second in the sentence structure."
+        },
+        {
+            question: "Welches ist die korrekte Form von „mögen“ im Konjunktiv II?",
+            options: ["möchte", "möchtet", "würde mögen", "mögen"],
+            answer: "möchte",
+            explanation: "'Möchte' is the Konjunktiv II form of 'mögen'."
+        },
+        {
+            question: "Wähle die richtige Verbform: Sie ___ schon seit einer Stunde auf den Bus.",
+            options: ["wartet", "warten", "hat gewartet", "hat warten"],
+            answer: "wartet",
+            explanation: "'Sie' requires the third-person singular form 'wartet'."
+        },
+        {
+            question: "Welches Wort passt in die Lücke? Er spricht ___ gut Deutsch.",
+            options: ["ziemlich", "recht", "sehr", "alle"],
+            answer: "sehr",
+            explanation: "'Sehr' means 'very' and is used for emphasis."
+        },
+        {
+            question: "Welcher Satz verwendet den Konjunktiv II korrekt?",
+            options: ["Wenn ich Zeit hätte, würde ich kommen.", "Wenn ich Zeit habe, würde ich kommen.", "Wenn ich Zeit hätte, komme ich.", "Wenn ich Zeit hatte, wäre ich gekommen."],
+            answer: "Wenn ich Zeit hätte, würde ich kommen.",
+            explanation: "The correct form for expressing hypothetical situations."
+        },
+        {
+            question: "Welches ist das richtige Partizip II von „schreiben“?",
+            options: ["geschrieben", "schrieb", "schreibend", "schreibte"],
+            answer: "geschrieben",
+            explanation: "'Geschrieben' is the correct past participle of 'schreiben'".
+        },
+        {
+            question: "Wähle das richtige Wort: Wir sind ___ den Park gegangen.",
+            options: ["durch", "über", "zu", "in"],
+            answer: "durch",
+            explanation: "'Durch' means 'through' and is used to indicate movement through an area."
+        },
+        {
+            question: "Welche Form ist korrekt? Ich habe die Aufgabe ___ .",
+            options: ["fertig gemacht", "fertigmachen", "fertigmacht", "fertig gemacht habe"],
+            answer: "fertig gemacht",
+            explanation: "The perfect form requires the past participle 'fertig gemacht'."
+        },
+        {
+            question: "Welches Wort passt nicht in die Reihe? Hund, Katze, ___ , Vogel.",
+            options: ["Fisch", "Eichhörnchen", "Maus", "Baum"],
+            answer: "Baum",
+            explanation: "'Baum' is not an animal; it is a tree."
+        },
+        {
+            question: "Wähle die richtige Form: Wenn ich mehr Zeit ___ , würde ich mehr lesen.",
+            options: ["hätte", "habe", "hatte", "hätte gehabt"],
+            answer: "hätte",
+            explanation: "The correct form in the Konjunktiv II for hypothetical situations is 'hätte'."
+        },
+        {
+            question: "Was ist die korrekte Übersetzung von „I have eaten“?",
+            options: ["Ich esse", "Ich aß", "Ich habe gegessen", "Ich essen habe"],
+            answer: "Ich habe gegessen",
+            explanation: "The correct perfect tense translation is 'Ich habe gegessen'."
+        },
+        {
+            question: "Welches Wort ist kein Adverb?",
+            options: ["schnell", "oft", "schön", "laufen"],
+            answer: "laufen",
+            explanation: "'Laufen' is a verb, while the others are adverbs."
+        },
+        {
+            question: "Wähle die richtige Präposition: Ich bin ___ der Schule.",
+            options: ["in", "zu", "an", "auf"],
+            answer: "in",
+            explanation: "'In der Schule' means 'in the school'."
+        },
+        {
+            question: "Welches Verb ist nicht reflexiv?",
+            options: ["sich erinnern", "sich freuen", "sich setzen", "laufen"],
+            answer: "laufen",
+            explanation: "'Laufen' is a non-reflexive verb."
+        },
+        {
+            question: "Was ist die richtige Pluralform von „Kind“?",
+            options: ["Kinde", "Kinder", "Kinds", "Kindern"],
+            answer: "Kinder",
+            explanation: "The plural of 'Kind' is 'Kinder'."
+        },
+        {
+            question: "Setze das richtige Verb ein: Sie ___ gerne ins Theater.",
+            options: ["geht", "gehst", "gehe", "gehen"],
+            answer: "geht",
+            explanation: "'Sie' requires the third-person singular form 'geht'."
+        },
+        {
+            question: "Welches ist die korrekte Form für den Superlativ? Das ist das ___ Buch in der Bibliothek.",
+            options: ["interessanteste", "interessantes", "interessant", "interessanter"],
+            answer: "interessanteste",
+            explanation: "The superlative form of 'interessant' is 'interessanteste'."
+        },
+        {
+            question: "Wähle das richtige Wort: Er hat das Problem ___ gelöst.",
+            options: ["gut", "schlecht", "schnell", "langsam"],
+            answer: "gut",
+            explanation: "'Gut' is used to indicate the quality of solving the problem."
+        },
+        {
+            question: "Welche Präposition verlangt den Akkusativ? Ich freue mich ___ deinen Besuch.",
+            options: ["auf", "über", "an", "mit"],
+            answer: "auf",
+            explanation: "'Freuen auf' means 'to look forward to'."
+        },
+        {
+            question: "Was ist die richtige Übersetzung von „She is reading a book“?",
+            options: ["Sie liest ein Buch", "Sie hat ein Buch gelesen", "Sie wird ein Buch lesen", "Sie lese ein Buch"],
+            answer: "Sie liest ein Buch",
+            explanation: "The present tense translation is 'Sie liest ein Buch'."
+        },
+        {
+            question: "Welches Wort ist ein Antonym von „warm“?",
+            options: ["kalt", "heiß", "mild", "cool"],
+            answer: "kalt",
+            explanation: "'Kalt' is the opposite of 'warm'."
+        },
+        {
+            question: "Wähle das passende Wort: Das Wetter ist heute sehr ___.",
+            options: ["schön", "hässlich", "warm", "trocken"],
+            answer: "schön",
+            explanation: "'Schön' means 'nice' and is a positive description."
+        }
+    ];
+    
 
 
     let timeRemaining = 15 * 60; // 15 minutes in seconds
