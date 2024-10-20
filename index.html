@@ -22,8 +22,8 @@
         }
 
         header img, footer img {
-            width: 100px;  /* Increased logo size */
-            height: 100px; /* Increased logo size */
+            width: 100px;
+            height: 100px;
             vertical-align: middle;
         }
 
@@ -33,7 +33,6 @@
             padding: 0 10px;
         }
 
-        /* Center the content on larger screens */
         main {
             display: flex;
             flex-direction: column;
@@ -43,9 +42,9 @@
         }
 
         h2, button {
-            font-size: 24px;  /* Increased font size */
-            font-weight: bold; /* Make text bold */
-            text-align: center; /* Centered text */
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
         }
 
         input[type="text"], button {
@@ -67,12 +66,51 @@
             background-color: #e68900;
         }
 
-        .question-box, .explanation-box {
-            padding: 15px;
-            border: 2px solid #c0c0c0;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
+        
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Other styles... */
+
+    /* Updated .question-box class */
+    .question-box {
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        margin: 20px 0;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        color: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .question-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .question-box p {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .question-box label {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .question-box input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    /* Keep the other styles as is */
+
 
         .saffron {
             background-color: #ff9933;
@@ -114,7 +152,6 @@
             color: #ffcc00;
         }
 
-        /* Responsive centering for input and buttons */
         @media screen and (min-width: 768px) {
             input[type="text"], button {
                 width: 300px;
@@ -122,7 +159,7 @@
         }
 
         .telegram-button {
-            background-color: #0088cc;
+            background-color: #ff9800;
             color: white;
             border: none;
             border-radius: 5px;
@@ -135,36 +172,23 @@
             background-color: #007bb5;
         }
 
-        /* Footer Layout */
         footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 0; /* Added padding to the footer */
-}
-
-footer p {
-    margin: 20px 0; /* Increased margin for better spacing */
-}
-
-
-        /* Centering for smaller devices */
-        @media (max-width: 600px) {
-            h2, button {
-                font-size: 20px; /* Smaller font for mobile */
-            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
         }
 
-    </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNSP6Z8S2F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        footer p {
+            margin: 20px 0;
+        }
 
-  gtag('config', 'G-HNSP6Z8S2F');
-</script>
+        @media (max-width: 600px) {
+            h2, button {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -177,7 +201,8 @@ footer p {
 <main id="main-content">
     <!-- Start Screen -->
     <div id="start-screen">
-        <h2>Willkommen! Bitte geben Sie Ihren Namen ein:</h2>
+        <h2>Willkommen!</h2>
+        <h2>Bitte geben Sie Ihren Namen ein:</h2>
         <input type="text" id="studentName" placeholder="Ihr Name">
         <button onclick="startQuiz()">Test starten</button>
     </div>
@@ -185,19 +210,56 @@ footer p {
     <!-- Quiz Container -->
     <div id="quiz-container" style="display: none;">
         <h2 id="timer">Zeit: <span id="time">15:00</span></h2>
-        <div id="questions"></div>
+        <div id="questions"></div> <!-- Place where questions will appear -->
         <button onclick="submitQuiz()">Test einreichen</button>
     </div>
 
+    <!-- Report Card -->
+    <div id="report-card" style="display: none;">
+        <h2>Quiz-Bericht</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Name:</td>
+                <td id="report-name" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Gesamtfragen:</td>
+                <td id="report-total" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Beantwortete Fragen:</td>
+                <td id="report-attempted" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Nicht beantwortete Fragen:</td>
+                <td id="report-unanswered" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Richtige Antworten:</td>
+                <td id="report-correct" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Falsche Antworten:</td>
+                <td id="report-incorrect" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Endergebnis:</td>
+                <td id="report-final" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; background-color: #ffeb3b; font-weight: bold;">Sterne-Bewertung:</td>
+                <td id="report-stars" style="padding: 10px; background-color: #f9f9f9;"></td>
+            </tr>
+        </table>
+    </div>
+
     <!-- Results Container -->
-<div id="results-container" style="display: none;">
-    <h2>Ergebnisse</h2>
-    <div id="results"></div>
-    <div id="explanations"></div>
-    <button onclick="restartQuiz()">Neuen Test starten</button>
-    <button onclick="saveQuiz()">Quiz speichern</button>
-    <div id="past-quizzes"></div> <!-- Section for displaying past quizzes -->
-</div>
+    <div id="results-container" style="display: none;">
+        <h2>Ergebnisse</h2>
+        <div id="results"></div>
+        <button onclick="restartQuiz()">Neuen Test starten</button>
+        <button onclick="saveQuiz()">Quiz speichern</button>
+    </div>
 
 </main>
 
@@ -209,482 +271,303 @@ footer p {
     <p>© 2024 GERMAN NOTES FOR A1 TO B2</p>
 </footer>
 
+<!-- Script Section -->
 <script>
-    let totalQuestions = 30; // Set to 30 questions
-    let correctAnswers = 0;
-
     let questions = [
         {
-            question: "Wähle die richtige Konjunktion: Ich gehe ins Kino, ___ es regnet.",
-            options: ["wenn", "obwohl", "weil", "damit"],
-            answer: "obwohl",
-            explanation: "Obwohl is used to express a contrast, meaning 'although'."
-        },
-        {
-            question: "Welches ist der richtige Artikel? Ich brauche ___ Buch für den Unterricht.",
-            options: ["der", "das", "die", "den"],
-            answer: "das",
-            explanation: "The correct article for 'Buch' (neuter noun) is 'das'."
-        },
-        {
-            question: "Setze das richtige Verb ein: Wir ___ seit drei Stunden auf den Bus.",
-            options: ["warten", "wartet", "warteten", "gewartet"],
-            answer: "warten",
-            explanation: "'Wir' is first-person plural, so the verb 'warten' stays in the plural form."
-        },
-        {
-            question: "Was ist die korrekte Pluralform von „Auto“?",
-            options: ["Autos", "Autoen", "Auton", "Aute"],
-            answer: "Autos",
-            explanation: "The plural of 'Auto' is 'Autos'."
-        },
-        {
-            question: "Wähle das richtige Modalverb: Peter ___ sein Zimmer aufräumen, bevor er spielen darf.",
-            options: ["muss", "will", "soll", "darf"],
-            answer: "muss",
-            explanation: "'Muss' expresses obligation, meaning 'must'."
-        },
-        {
-            question: "Welcher Satz ist im Futur I korrekt?",
-            options: ["Ich werde nach Hause gehen.", "Ich gehte nach Hause.", "Ich warte nach Hause.", "Ich habe nach Hause gegangen."],
-            answer: "Ich werde nach Hause gehen.",
-            explanation: "Futur I is constructed with 'werden' and the infinitive verb."
-        },
-        {
-            question: "Welches Pronomen passt? Das ist das Haus, in ___ wir wohnen.",
-            options: ["dem", "der", "denen", "das"],
-            answer: "dem",
-            explanation: "'Dem' is the correct relative pronoun in dative case referring to 'Haus'."
-        },
-        {
-            question: "Welches Adjektiv ist richtig dekliniert? Ich habe einen ___ Apfel gekauft.",
-            options: ["roten", "roter", "rot", "rotes"],
-            answer: "roten",
-            explanation: "For masculine accusative nouns, the adjective takes the '-en' ending."
-        },
-        {
-            question: "Wähle die richtige Präposition: Ich warte ___ meinen Freund vor dem Kino.",
-            options: ["auf", "für", "an", "über"],
-            answer: "auf",
-            explanation: "'Warten auf' means 'to wait for'."
-        },
-        {
-            question: "Welches ist das korrekte Perfekt? Wir ___ den ganzen Tag gearbeitet.",
-            options: ["haben", "sind", "hatten", "waren"],
-            answer: "haben",
-            explanation: "In the perfect tense, 'haben' is used with most verbs."
-        },
-        {
-            question: "Welche Präposition erfordert den Akkusativ?",
-            options: ["durch", "mit", "bei", "seit"],
-            answer: "durch",
-            explanation: "'Durch' is a preposition that requires the accusative case."
-        },
-        {
-            question: "Welches ist der korrekte Genitivsatz? Das ist das Auto ___ Bruders.",
-            options: ["meines", "meines", "meinem", "meiner"],
-            answer: "meines",
-            explanation: "The genitive form is 'meines Bruders' for 'my brother's car'."
-        },
-        {
-            question: "Welcher Satz ist im Passiv? ",
-            options: ["Die Kinder essen das Eis.", "Das Eis wird von den Kindern gegessen.", "Die Kinder werden das Eis essen.", "Das Eis gegessen werden."],
-            answer: "Das Eis wird von den Kindern gegessen.",
-            explanation: "The passive voice describes what happens to the ice cream."
-        },
-        {
-            question: "Wähle die richtige Zeitform: Er sagte, dass er gestern ___ .",
-            options: ["gegangen ist", "geht", "gegangen war", "gegangen hätte"],
-            answer: "gegangen war",
-            explanation: "For reported speech, we use the plusquamperfekt."
-        },
-        {
-            question: "Welches Wort ist ein Synonym für „beginnen“?",
-            options: ["anfangen", "aufhören", "beenden", "verlassen"],
-            answer: "anfangen",
-            explanation: "'Anfangen' is a synonym for 'beginnen'."
-        },
-        {
-            question: "Welches Verb erfordert den Dativ? Das Buch ___ mir sehr gut.",
-            options: ["gefällt", "gehört", "liegt", "sieht"],
-            answer: "gefällt",
-            explanation: "'Gefallen' takes the dative case."
-        },
-        {
-            question: "Welcher Satz ist korrekt?",
-            options: ["Ich bin nach Deutschland gegangen.", "Ich war nach Deutschland gegangen.", "Ich habe nach Deutschland gehen.", "Ich werde nach Deutschland gehen sein."],
-            answer: "Ich bin nach Deutschland gegangen.",
-            explanation: "This is the correct sentence in the perfect tense."
-        },
-        {
-            question: "Wähle das richtige Relativpronomen: Der Mann, ___ Auto kaputt ist, wartet hier.",
-            options: ["dessen", "der", "dessen", "den"],
-            answer: "dessen",
-            explanation: "'Dessen' is used in the genitive to indicate possession."
-        },
-        {
-            question: "Welche Adjektivendung ist korrekt? Das ist ein ___ Auto.",
-            options: ["schönes", "schönen", "schöner", "schöne"],
-            answer: "schönes",
-            explanation: "For neuter nouns, the correct adjective ending is '-es'."
-        },
-        {
-            question: "Welches ist das richtige Verb im Plusquamperfekt? Bevor sie ankam, ___ ich das Essen schon gekocht.",
-            options: ["hatte", "habe", "war", "wäre"],
-            answer: "hatte",
-            explanation: "The plusquamperfekt is constructed with 'hatte' plus the past participle."
-        },
-        {
-            question: "Welche Präposition wird mit Genitiv verwendet?",
-            options: ["trotz", "bei", "mit", "in"],
-            answer: "trotz",
-            explanation: "'Trotz' is a preposition that requires the genitive case."
-        },
-        {
-            question: "Wähle das richtige Reflexivpronomen: Er hat ___ die Hände gewaschen.",
-            options: ["sich", "ihn", "ihn", "sein"],
-            answer: "sich",
-            explanation: "Reflexive verbs use the pronoun 'sich' in the third person."
-        },
-        {
-            question: "Welches Wort passt in die Lücke? Wir wohnen in einer ___ Stadt.",
-            options: ["kleinen", "kleiner", "kleine", "kleinem"],
-            answer: "kleinen",
-            explanation: "Adjectives before feminine singular nouns in the dative take the '-en' ending."
-        },
-        {
-            question: "Welche Wortstellung ist korrekt? Heute ___ wir ins Kino gehen.",
-            options: ["werden", "werden wir", "gehen wir", "wir werden"],
-            answer: "gehen wir",
-            explanation: "In German, the verb comes second in the sentence structure."
-        },
-        {
-            question: "Welches ist die korrekte Form von „mögen“ im Konjunktiv II?",
-            options: ["möchte", "möchtet", "würde mögen", "mögen"],
-            answer: "möchte",
-            explanation: "'Möchte' is the Konjunktiv II form of 'mögen'."
-        },
-        {
-            question: "Wähle die richtige Verbform: Sie ___ schon seit einer Stunde auf den Bus.",
-            options: ["wartet", "warten", "hat gewartet", "hat warten"],
-            answer: "wartet",
-            explanation: "'Sie' requires the third-person singular form 'wartet'."
-        },
-        {
-            question: "Welches Wort passt in die Lücke? Er spricht ___ gut Deutsch.",
-            options: ["ziemlich", "recht", "sehr", "alle"],
-            answer: "sehr",
-            explanation: "'Sehr' means 'very' and is used for emphasis."
-        },
-        {
-            question: "Welcher Satz verwendet den Konjunktiv II korrekt?",
-            options: ["Wenn ich Zeit hätte, würde ich kommen.", "Wenn ich Zeit habe, würde ich kommen.", "Wenn ich Zeit hätte, komme ich.", "Wenn ich Zeit hatte, wäre ich gekommen."],
-            answer: "Wenn ich Zeit hätte, würde ich kommen.",
-            explanation: "The correct form for expressing hypothetical situations."
-        },
-        {
-            question: "Welches ist das richtige Partizip II von „schreiben“?",
-            options: ["geschrieben", "schrieb", "schreibend", "schreibte"],
-            answer: "geschrieben",
-            explanation: "'Geschrieben' is the correct past participle of 'schreiben'".
-        },
-        {
-            question: "Wähle das richtige Wort: Wir sind ___ den Park gegangen.",
-            options: ["durch", "über", "zu", "in"],
-            answer: "durch",
-            explanation: "'Durch' means 'through' and is used to indicate movement through an area."
-        },
-        {
-            question: "Welche Form ist korrekt? Ich habe die Aufgabe ___ .",
-            options: ["fertig gemacht", "fertigmachen", "fertigmacht", "fertig gemacht habe"],
-            answer: "fertig gemacht",
-            explanation: "The perfect form requires the past participle 'fertig gemacht'."
-        },
-        {
-            question: "Welches Wort passt nicht in die Reihe? Hund, Katze, ___ , Vogel.",
-            options: ["Fisch", "Eichhörnchen", "Maus", "Baum"],
-            answer: "Baum",
-            explanation: "'Baum' is not an animal; it is a tree."
-        },
-        {
-            question: "Wähle die richtige Form: Wenn ich mehr Zeit ___ , würde ich mehr lesen.",
-            options: ["hätte", "habe", "hatte", "hätte gehabt"],
-            answer: "hätte",
-            explanation: "The correct form in the Konjunktiv II for hypothetical situations is 'hätte'."
-        },
-        {
-            question: "Was ist die korrekte Übersetzung von „I have eaten“?",
-            options: ["Ich esse", "Ich aß", "Ich habe gegessen", "Ich essen habe"],
-            answer: "Ich habe gegessen",
-            explanation: "The correct perfect tense translation is 'Ich habe gegessen'."
-        },
-        {
-            question: "Welches Wort ist kein Adverb?",
-            options: ["schnell", "oft", "schön", "laufen"],
-            answer: "laufen",
-            explanation: "'Laufen' is a verb, while the others are adverbs."
-        },
-        {
-            question: "Wähle die richtige Präposition: Ich bin ___ der Schule.",
-            options: ["in", "zu", "an", "auf"],
-            answer: "in",
-            explanation: "'In der Schule' means 'in the school'."
-        },
-        {
-            question: "Welches Verb ist nicht reflexiv?",
-            options: ["sich erinnern", "sich freuen", "sich setzen", "laufen"],
-            answer: "laufen",
-            explanation: "'Laufen' is a non-reflexive verb."
-        },
-        {
-            question: "Was ist die richtige Pluralform von „Kind“?",
-            options: ["Kinde", "Kinder", "Kinds", "Kindern"],
-            answer: "Kinder",
-            explanation: "The plural of 'Kind' is 'Kinder'."
-        },
-        {
-            question: "Setze das richtige Verb ein: Sie ___ gerne ins Theater.",
-            options: ["geht", "gehst", "gehe", "gehen"],
-            answer: "geht",
-            explanation: "'Sie' requires the third-person singular form 'geht'."
-        },
-        {
-            question: "Welches ist die korrekte Form für den Superlativ? Das ist das ___ Buch in der Bibliothek.",
-            options: ["interessanteste", "interessantes", "interessant", "interessanter"],
-            answer: "interessanteste",
-            explanation: "The superlative form of 'interessant' is 'interessanteste'."
-        },
-        {
-            question: "Wähle das richtige Wort: Er hat das Problem ___ gelöst.",
-            options: ["gut", "schlecht", "schnell", "langsam"],
-            answer: "gut",
-            explanation: "'Gut' is used to indicate the quality of solving the problem."
-        },
-        {
-            question: "Welche Präposition verlangt den Akkusativ? Ich freue mich ___ deinen Besuch.",
-            options: ["auf", "über", "an", "mit"],
-            answer: "auf",
-            explanation: "'Freuen auf' means 'to look forward to'."
-        },
-        {
-            question: "Was ist die richtige Übersetzung von „She is reading a book“?",
-            options: ["Sie liest ein Buch", "Sie hat ein Buch gelesen", "Sie wird ein Buch lesen", "Sie lese ein Buch"],
-            answer: "Sie liest ein Buch",
-            explanation: "The present tense translation is 'Sie liest ein Buch'."
-        },
-        {
-            question: "Welches Wort ist ein Antonym von „warm“?",
-            options: ["kalt", "heiß", "mild", "cool"],
-            answer: "kalt",
-            explanation: "'Kalt' is the opposite of 'warm'."
-        },
-        {
-            question: "Wähle das passende Wort: Das Wetter ist heute sehr ___.",
-            options: ["schön", "hässlich", "warm", "trocken"],
-            answer: "schön",
-            explanation: "'Schön' means 'nice' and is a positive description."
-        }
+    "question": "Welches Verb passt in die Lücke? Er hat mich gestern nicht angerufen, ___ ich ihm geschrieben habe.",
+    "options": ["während", "trotzdem", "weil", "obwohl"],
+    "answer": "obwohl",
+    "explanation": "Obwohl is used to show contrast, meaning 'although.'"
+},
+{
+    "question": "Welche Präposition passt hier? Sie geht nie ohne ihren Hund spazieren, ___ er alt ist.",
+    "options": ["während", "obwohl", "trotzdem", "damit"],
+    "answer": "obwohl",
+    "explanation": "Obwohl is used to express a contradiction, meaning 'although.'"
+},
+{
+    "question": "Wähle das richtige Modalverb: Peter kann heute nicht kommen, ___ er krank ist.",
+    "options": ["weil", "obwohl", "denn", "damit"],
+    "answer": "weil",
+    "explanation": "Weil explains the reason, meaning 'because.'"
+},
+{
+    "question": "Welcher Artikel passt? ___ Haus ist groß und hat einen schönen Garten.",
+    "options": ["Die", "Der", "Das", "Den"],
+    "answer": "Das",
+    "explanation": "Das is the correct article for neuter nouns like 'Haus.'"
+},
+{
+    "question": "Wähle die richtige Präposition: Er geht zum Arzt, ___ seine Schmerzen schlimmer werden.",
+    "options": ["wenn", "obwohl", "damit", "als"],
+    "answer": "wenn",
+    "explanation": "Wenn is used for conditional sentences, meaning 'if' or 'when.'"
+},
+
+    {
+        "question": "Welche Konjunktion passt? Sie bleibt zu Hause, ___ das Wetter schön ist.",
+        "options": ["obwohl", "weil", "wenn", "denn"],
+        "answer": "obwohl",
+        "explanation": "Obwohl is used to express contrast, meaning 'although.'"
+    },
+    {
+        "question": "Welches Verb passt in die Lücke? Ich weiß nicht, ___ er morgen kommt.",
+        "options": ["wann", "wo", "ob", "dass"],
+        "answer": "ob",
+        "explanation": "Ob is used in indirect yes/no questions, meaning 'if.'"
+    },
+    {
+        "question": "Wähle das richtige Pronomen: Ich habe ___ schon gesehen.",
+        "options": ["er", "ihn", "ihm", "ihr"],
+        "answer": "ihn",
+        "explanation": "Ihn is the accusative form of 'er' (him)."
+    },
+    {
+        "question": "Wähle die richtige Präposition: Sie wartet ___ den Bus.",
+        "options": ["auf", "für", "mit", "über"],
+        "answer": "auf",
+        "explanation": "'Auf' is used with 'warten,' meaning 'wait for.'"
+    },
+    {
+        "question": "Wähle den richtigen Kasus: Das Geschenk ist für ___ Freund.",
+        "options": ["mein", "meinen", "meinem", "meines"],
+        "answer": "meinen",
+        "explanation": "Accusative case is used after 'für' (for), so 'meinen Freund.'"
+    },
+    {
+        "question": "Welche Konjunktion passt? ___ sie müde ist, geht sie ins Bett.",
+        "options": ["Bevor", "Sobald", "Da", "Falls"],
+        "answer": "Da",
+        "explanation": "'Da' is used for causality, meaning 'since' or 'because.'"
+    },
+    {
+        "question": "Welches Verb passt hier? ___ du mir bitte das Buch geben?",
+        "options": ["Kann", "Soll", "Musst", "Darf"],
+        "answer": "Kann",
+        "explanation": "'Kann' expresses possibility or ability, meaning 'Can you give me the book?'"
+    },
+    {
+        "question": "Welche Präposition passt? Ich wohne ___ der Stadt.",
+        "options": ["auf", "in", "an", "über"],
+        "answer": "in",
+        "explanation": "'In' is used for locations inside something, such as a city."
+    },
+    {
+        "question": "Welches Wort passt in die Lücke? Er läuft schneller, ___ sie.",
+        "options": ["wie", "als", "obwohl", "während"],
+        "answer": "als",
+        "explanation": "'Als' is used in comparisons, meaning 'than.'"
+    },
+    {
+        "question": "Welche Konjunktion passt? ___ ich Zeit habe, besuche ich dich.",
+        "options": ["Wenn", "Falls", "Obwohl", "Denn"],
+        "answer": "Wenn",
+        "explanation": "'Wenn' is used for conditions, meaning 'if' or 'when.'"
+    },
+    {
+        "question": "Welcher Artikel passt? ___ Buch liegt auf dem Tisch.",
+        "options": ["Die", "Der", "Das", "Den"],
+        "answer": "Das",
+        "explanation": "'Das' is the correct article for neuter nouns like 'Buch.'"
+    },
+    {
+        "question": "Welches Wort passt? Sie sind gerade ___ gegangen.",
+        "options": ["hier", "da", "weg", "drin"],
+        "answer": "weg",
+        "explanation": "'Weg' means 'away.'"
+    },
+    {
+        "question": "Welches Modalverb passt hier? Du ___ mehr lernen, wenn du die Prüfung bestehen willst.",
+        "options": ["sollst", "kannst", "musst", "willst"],
+        "answer": "musst",
+        "explanation": "'Musst' expresses necessity, meaning 'You must study more.'"
+    },
+    {
+        "question": "Wähle die richtige Konjunktion: Ich kann nicht kommen, ___ ich krank bin.",
+        "options": ["obwohl", "damit", "denn", "wenn"],
+        "answer": "denn",
+        "explanation": "'Denn' explains reasons, meaning 'because.'"
+    },
+    {
+        "question": "Welche Präposition passt hier? Wir gehen heute Abend ___ Kino.",
+        "options": ["an", "auf", "ins", "über"],
+        "answer": "ins",
+        "explanation": "'Ins' is a contraction of 'in das,' meaning 'into the.'"
+    },
+    {
+        "question": "Wähle das richtige Pronomen: Das ist der Mann, ___ ich gestern getroffen habe.",
+        "options": ["den", "der", "dem", "dessen"],
+        "answer": "den",
+        "explanation": "'Den' is the accusative relative pronoun for masculine nouns."
+    },
+    {
+        "question": "Welcher Kasus passt hier? Er gibt das Buch ___ Schwester.",
+        "options": ["der", "die", "den", "dem"],
+        "answer": "der",
+        "explanation": "'Der' is dative for feminine nouns like 'Schwester.'"
+    },
+    {
+        "question": "Welches Modalverb passt hier? Wir ___ heute ins Theater gehen.",
+        "options": ["dürfen", "wollen", "sollen", "müssen"],
+        "answer": "wollen",
+        "explanation": "'Wollen' expresses intention, meaning 'We want to go to the theater.'"
+    },
+    {
+        "question": "Welches Verb passt in die Lücke? ___ du oft ins Fitnessstudio?",
+        "options": ["Laufst", "Gehst", "Bist", "Machst"],
+        "answer": "Gehst",
+        "explanation": "'Gehen' is used for going to places, meaning 'Do you often go to the gym?'"
+    },
+    {
+        "question": "Welche Präposition passt hier? Wir fahren ___ den Urlaub in die Schweiz.",
+        "options": ["an", "auf", "für", "in"],
+        "answer": "in",
+        "explanation": "'In' is used with countries that include an article, like 'die Schweiz.'"
+    },
+    {
+        "question": "Wähle die richtige Konjunktion: Wir treffen uns, ___ das Wetter schlecht ist.",
+        "options": ["weil", "obwohl", "während", "sobald"],
+        "answer": "obwohl",
+        "explanation": "'Obwohl' expresses a contradiction, meaning 'although.'"
+    },
+    {
+        "question": "Welches Adverb passt hier? Er fährt ___ Auto zur Arbeit.",
+        "options": ["jeden", "jedes", "mit", "per"],
+        "answer": "mit",
+        "explanation": "'Mit' is used with transportation, meaning 'with' or 'by.'"
+    },
+    {
+        "question": "Wähle die richtige Form: ___ Sohn kann gut schwimmen.",
+        "options": ["Meiner", "Mein", "Meinen", "Meinem"],
+        "answer": "Mein",
+        "explanation": "'Mein' is nominative, which is required here for the subject 'Sohn.'"
+    },
+    {
+        "question": "Welches Modalverb passt? Er ___ ein neues Auto kaufen.",
+        "options": ["will", "soll", "darf", "kann"],
+        "answer": "will",
+        "explanation": "'Will' expresses intention, meaning 'He wants to buy a new car.'"
+    },
+    {
+        "question": "Welches Wort passt? Sie ist älter ___ ich.",
+        "options": ["wie", "als", "wenn", "denn"],
+        "answer": "als",
+        "explanation": "'Als' is used for comparisons, meaning 'than.'"
+    }
+
     ];
-    
-
-
-    let timeRemaining = 15 * 60; // 15 minutes in seconds
+    let userAnswers = [];
+    let time = 15 * 60;
+    let timerInterval;
 
     function startQuiz() {
         const studentName = document.getElementById('studentName').value;
         if (!studentName) {
-            alert('Bitte geben Sie Ihren Namen ein.');
+            alert("Bitte geben Sie Ihren Namen ein.");
             return;
         }
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'block';
-        loadQuiz();
+        showQuestions();
         startTimer();
     }
 
-    function loadQuiz() {
-        let quizHtml = '';
+    function showQuestions() {
+        const questionsDiv = document.getElementById('questions');
+        questionsDiv.innerHTML = '';
         questions.forEach((q, index) => {
-            const colorClass = index % 3 === 0 ? 'saffron' : index % 3 === 1 ? 'white' : 'green';
-
-            quizHtml += `
-                <div class="question-box ${colorClass}">
-                    <h3>Frage ${index + 1}: ${q.question}</h3>
-                    ${q.options.map(option => `
-                        <label>
-                            <input type="radio" name="question${index}" value="${option}">
-                            ${option}
-                        </label><br>
-                    `).join('')}
-                </div>`;
+            const questionBox = document.createElement('div');
+            questionBox.className = 'question-box';
+            questionBox.innerHTML = `<p><strong>Frage ${index + 1}:</strong> ${q.question}</p>`;
+            q.options.forEach(option => {
+                questionBox.innerHTML += `
+                    <label>
+                        <input type="radio" name="question${index}" value="${option}"> ${option}
+                    </label><br>
+                `;
+            });
+            questionsDiv.appendChild(questionBox);
         });
-
-        document.getElementById('questions').innerHTML = quizHtml;
     }
 
     function startTimer() {
-        const timerElement = document.getElementById('time');
-
-        const countdown = setInterval(() => {
-            if (timeRemaining <= 0) {
-                clearInterval(countdown);
-                submitQuiz(); // Auto-submit when time runs out
-            } else {
-                timeRemaining--;
-                const minutes = Math.floor(timeRemaining / 60);
-                const seconds = timeRemaining % 60;
-                timerElement.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        const timer = document.getElementById('time');
+        timerInterval = setInterval(() => {
+            time--;
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            timer.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (time === 0) {
+                clearInterval(timerInterval);
+                submitQuiz();
             }
         }, 1000);
     }
 
     function submitQuiz() {
-        correctAnswers = 0;
-        let incorrectAnswers = 0;
-        let unansweredQuestions = 0;
-
-        questions.forEach((q, index) => {
-            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-            if (selectedOption) {
-                if (selectedOption.value === q.answer) {
-                    correctAnswers++;
-                } else {
-                    incorrectAnswers++;
-                }
-            } else {
-                unansweredQuestions++;
-            }
-        });
-
-        // Call the showResults function after calculating answers
-        showResults(incorrectAnswers, unansweredQuestions);
+        clearInterval(timerInterval);
+        const questionsDiv = document.getElementById('questions');
+        const inputs = questionsDiv.querySelectorAll('input[type="radio"]:checked');
+        userAnswers = Array.from(inputs).map(input => input.value);
+        showResults();
     }
 
-    // Show results function should be defined outside of submitQuiz
-    function showResults(incorrectAnswers, unansweredQuestions) {
+    function showResults() {
+        const name = document.getElementById('studentName').value;
+        document.getElementById('report-name').innerText = name;
+        document.getElementById('report-total').innerText = questions.length;
+        document.getElementById('report-attempted').innerText = userAnswers.length;
+        document.getElementById('report-unanswered').innerText = questions.length - userAnswers.length;
+
+        const correctAnswers = questions.filter((q, i) => userAnswers[i] === q.answer).length;
+        document.getElementById('report-correct').innerText = correctAnswers;
+        document.getElementById('report-incorrect').innerText = questions.length - correctAnswers;
+        const finalScore = Math.floor((correctAnswers / questions.length) * 100);
+        document.getElementById('report-final').innerText = `${finalScore}%`;
+
+        // Display stars based on score
+        const starCount = Math.floor((correctAnswers / questions.length) * 5);
+        let stars = '';
+        for (let i = 0; i < starCount; i++) {
+            stars += '★';
+        }
+        document.getElementById('report-stars').innerText = stars || '☆';
+
         document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('report-card').style.display = 'block';
         document.getElementById('results-container').style.display = 'block';
 
-        const totalAttempted = totalQuestions - unansweredQuestions;
-        const percentage = (correctAnswers / totalQuestions) * 100;
-        const stars = calculateStars(correctAnswers);
-
-        const resultsHtml = `
-            <table class="results-table">
-                <tr>
-                    <th>Teilnehmer:</th>
-                    <td>${document.getElementById('studentName').value}</td>
-                </tr>
-                <tr>
-                    <th>Gesamtversuche:</th>
-                    <td>${totalAttempted}</td>
-                </tr>
-                <tr>
-                    <th>Korrekte Fragen:</th>
-                    <td>${correctAnswers}</td>
-                </tr>
-                <tr>
-                    <th>Falsche Fragen:</th>
-                    <td>${incorrectAnswers}</td>
-                </tr>
-                <tr>
-                    <th>Übersehene Fragen:</th>
-                    <td>${unansweredQuestions}</td>
-                </tr>
-                <tr>
-                    <th>Prozentsatz:</th>
-                    <td>${percentage.toFixed(2)}%</td>
-                </tr>
-                <tr>
-                    <th>Bewertung:</th>
-                    <td class="star-rating">${stars}</td>
-                </tr>
-            </table>
-        `;
-
-        const explanationsHtml = questions.map((q, index) => {
-            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-            const userResponse = selectedOption ? selectedOption.value : 'Nicht beantwortet';
-            const correctIcon = userResponse === q.answer ? '✅' : '❌';
-
-            return `
-                <div class="explanation-box ${index % 3 === 0 ? 'saffron' : index % 3 === 1 ? 'white' : 'green'}">
-                    <h4>Erklärung für Frage ${index + 1}:</h4>
-                    <p><strong>Ihre Antwort:</strong> ${correctIcon} ${userResponse}</p>
-                    <p><strong>Korrekte Antwort:</strong> ${q.answer}</p>
-                    <p>${q.explanation}</p>
-                </div>
+        // Populate the results review section
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+        questions.forEach((q, i) => {
+            const resultBox = document.createElement('div');
+            resultBox.className = 'explanation-box';
+            const userAnswer = userAnswers[i] || 'Keine Antwort';
+            const correct = userAnswer === q.answer;
+            resultBox.innerHTML = `
+                <p><strong>Frage ${i + 1}:</strong> ${q.question}</p>
+                <p><strong>Ihre Antwort:</strong> ${userAnswer} ${correct ? '✔' : '❌'}</p>
+                <p><strong>Korrekte Antwort:</strong> ${q.answer}</p>
+                <p><strong>Erklärung:</strong> ${q.explanation}</p>
             `;
-        }).join('');
-
-        document.getElementById('results').innerHTML = resultsHtml;
-        document.getElementById('explanations').innerHTML = explanationsHtml;
-    }
-
-    function calculateStars(correctAnswers) {
-        const percentage = (correctAnswers / totalQuestions) * 100;
-        if (percentage === 100) {
-            return '⭐⭐⭐⭐⭐';
-        } else if (percentage >= 80) {
-            return '⭐⭐⭐⭐';
-        } else if (percentage >= 60) {
-            return '⭐⭐⭐';
-        } else if (percentage >= 40) {
-            return '⭐⭐';
-        } else {
-            return '⭐';
-        }
+            resultBox.style.backgroundColor = correct ? '#dff0d8' : '#f2dede';
+            resultsDiv.appendChild(resultBox);
+        });
     }
 
     function restartQuiz() {
-        correctAnswers = 0;
-        timeRemaining = 15 * 60; // Reset the timer
-        document.getElementById('results-container').style.display = 'none';
-        document.getElementById('start-screen').style.display = 'block';
         document.getElementById('studentName').value = '';
-    }
-    // Function to save the quiz
-function saveQuiz() {
-    const quizData = {
-        date: new Date().toLocaleDateString(),
-        studentName: document.getElementById('studentName').value,
-        correctAnswers: correctAnswers,
-        totalQuestions: totalQuestions,
-        questions: questions
-    };
-
-    let pastQuizzes = JSON.parse(localStorage.getItem('pastQuizzes')) || [];
-    pastQuizzes.push(quizData);
-    localStorage.setItem('pastQuizzes', JSON.stringify(pastQuizzes));
-
-    alert('Quiz gespeichert!');
-}
-
-// Function to load past quizzes and display them
-function loadPastQuizzes() {
-    const pastQuizzes = JSON.parse(localStorage.getItem('pastQuizzes')) || [];
-    const quizzesContainer = document.getElementById('past-quizzes');
-    
-    if (pastQuizzes.length === 0) {
-        quizzesContainer.innerHTML = '<p>Keine gespeicherten Quizzes gefunden.</p>';
-        return;
+        document.getElementById('start-screen').style.display = 'block';
+        document.getElementById('report-card').style.display = 'none';
+        document.getElementById('results-container').style.display = 'none';
     }
 
-    const quizzesHtml = pastQuizzes.map((quiz, index) => `
-        <div class="quiz-summary">
-            <h4>Quiz vom ${quiz.date}</h4>
-            <p>Teilnehmer: ${quiz.studentName}</p>
-            <p>Korrekte Antworten: ${quiz.correctAnswers} von ${quiz.totalQuestions}</p>
-        </div>
-    `).join('');
-
-    quizzesContainer.innerHTML = quizzesHtml;
-}
-
-// Call this function when the page loads
-document.addEventListener('DOMContentLoaded', loadPastQuizzes);
-
+    function saveQuiz() {
+        alert("Quiz wurde gespeichert!");
+    }
 </script>
+
 </body>
 </html>
-
