@@ -73,11 +73,7 @@
         color: #333;
         margin: 0;
         padding: 0;
-    }
-
-    /* Other styles... */
-
-    /* Updated .question-box class */
+    }
     .question-box {
         padding: 20px;
         border: 2px solid #ccc;
@@ -107,9 +103,7 @@
 
     .question-box input[type="radio"] {
         margin-right: 5px;
-    }
-
-    /* Keep the other styles as is */
+    }
 
 
         .saffron {
@@ -206,15 +200,14 @@
         <input type="text" id="studentName" placeholder="Ihr Name">
         <button onclick="startQuiz()">Test starten</button>
     </div>
-
-    <!-- Quiz Container -->
+
     <div id="quiz-container" style="display: none;">
         <h2 id="timer">Zeit: <span id="time">15:00</span></h2>
+        <h3> Note: Attempting every question is required, and they must be solved in order, from number 1 to 30.</h3>
         <div id="questions"></div> <!-- Place where questions will appear -->
         <button onclick="submitQuiz()">Test einreichen</button>
     </div>
-
-    <!-- Report Card -->
+
     <div id="report-card" style="display: none;">
         <h2>Quiz-Bericht</h2>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -252,8 +245,7 @@
             </tr>
         </table>
     </div>
-
-    <!-- Results Container -->
+
     <div id="results-container" style="display: none;">
         <h2>Ergebnisse</h2>
         <div id="results"></div>
@@ -270,8 +262,7 @@
     </p>
     <p>© 2024 GERMAN NOTES FOR A1 TO B2</p>
 </footer>
-
-<!-- Script Section -->
+
 <script>
     let questions = [
         {
