@@ -541,4 +541,13 @@ function saveQuiz(){
   });
   const blob = new Blob([text], {type:'text/plain'});
   const url = URL.createObjectURL(blob);
-  const a = document.
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `quiz-ergebnis-${name || 'test'}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
